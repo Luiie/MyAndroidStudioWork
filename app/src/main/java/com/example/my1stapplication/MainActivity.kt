@@ -76,5 +76,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Enter the Height/Weight", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.StopWatchButton.setOnClickListener {
+            val intent = Intent(this, StopWatchActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
