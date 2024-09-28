@@ -11,6 +11,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.my1stapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private val binding by lazy{
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,15 +39,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.resultButton2.setOnClickListener {
-            val intent = Intent(this, ResultActivity::class.java).apply{
-                putExtra("height", binding.heightEditText.text.toString().toFloat())
-                putExtra("weight", binding.weightEditText.text.toString().toFloat())
+            if(binding.weightEditText.text.isNotBlank() && binding.heightEditText.text.isNotBlank()){
+                val intent = Intent(this, ResultActivity::class.java).apply{
+                    putExtra("height", binding.heightEditText.text.toString().toFloat())
+                    putExtra("weight", binding.weightEditText.text.toString().toFloat())
+                }
+                startActivity(intent)
             }
-            startActivity(intent)
         }
-    }
-
-    private val binding by lazy{
-        ActivityMainBinding.inflate(layoutInflater)
     }
 }
