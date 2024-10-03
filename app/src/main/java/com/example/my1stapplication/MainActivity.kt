@@ -77,8 +77,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.StopWatchButton.setOnClickListener {
+        binding.stopWatchButton.setOnClickListener {
             val intent = Intent(this, StopWatchActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.webButton.setOnClickListener {
+            val intent = Intent(this, WebBrowserActivity::class.java)
             startActivity(intent)
         }
     }
