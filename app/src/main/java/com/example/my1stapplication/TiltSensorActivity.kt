@@ -15,6 +15,8 @@ class TiltSensorActivity : AppCompatActivity(), SensorEventListener {
 //    private val binding by lazy{
 //        ActivityTiltSensorBinding.inflate(layoutInflater)
 //    }
+    private lateinit var tiltView: TiltView
+
     private val sensorManager by lazy {
         getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
@@ -31,24 +33,22 @@ class TiltSensorActivity : AppCompatActivity(), SensorEventListener {
         sensorManager.unregisterListener(this)
     }
 //
-    override fun onSensorChanged(event: SensorEvent?) {
+    override fun onSensorChanged(event: SensorEvent) {
+        tiltView.onSensorEvent(event)
         event?.let{
             Log.d("Activity", "x: ${event.values[0]}, y: ${event.values[1]}, z: ${event.values[2]}")
         }
-
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
 //        TODO("Not yet implemented")
     }
 
-    private lateinit var tiltView: TiltView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
 
         tiltView = TiltView(this)
         setContentView(tiltView)
