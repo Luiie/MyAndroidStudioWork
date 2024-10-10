@@ -1,6 +1,8 @@
 package com.example.my1stapplication
 
+import android.content.Context
 import android.content.Intent
+import android.hardware.SensorEventListener
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import android.widget.Button
@@ -86,5 +88,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, WebBrowserActivity::class.java)
             startActivity(intent)
         }
+
+        binding.tiltSensorButton.setOnClickListener {
+            val intent = Intent(this, TiltSensorActivity::class.java)
+            startActivity(intent)
+        }
     }
+
 }
